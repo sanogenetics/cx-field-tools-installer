@@ -79,7 +79,7 @@ resource "null_resource" "aws_batch_forge" {
 
   provisioner "local-exec" {
     command     = <<-EOT
-      echo '${local.aws_batch_forge}' >> ${path.module}/assets/target/seqerakit/setup.yml
+      echo '${replace(local.aws_batch_forge, "'", "'\"'\"'")}' >> ${path.module}/assets/target/seqerakit/setup.yml
     EOT
     interpreter = ["/bin/bash", "-c"]
   }
